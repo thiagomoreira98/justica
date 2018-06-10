@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Advogados</title>
+    <link rel="stylesheet" href="/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/listaPedido">Listar Pedidos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/novoPedido">Novo Pedido</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nome</th>
+                    <th>Apelido</th>
+                    <th>Sexo</th>
+                    <th>Faculdade</th>
+                    <th>Data Formatura</th>
+                    <th>Visualizar Itens</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (adv of advogados){%>
+                    <tr>
+                        <td><%= adv.adv_codigo%> </td>
+                        <td><%= adv.adv_nome%> </td>
+                        <td><%= adv.adv_apelido%> </td>
+                        <td><%= adv.adv_sexo%> </td>
+                        <td><%= adv.adv_faculdade%> </td>
+                        <td><%= adv.adv_dtformatura%> </td>
+                        <td><a class="btn btn-success" href=<%="/advogado/views/" + adv.adv_codigo%>>Ver</a></td>
+                        <td><a class="btn btn-warning" href=<%="/advogado_editar/views/" + adv.adv_codigo%>>Alterar</a> </td>
+                        <td><a class="btn btn-danger" href=<%="/advogado/excluir/" + adv.adv_codigo%>>Deletar</a> </td>
+                    </tr>
+                <%}%>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/js/bootstrap.js"></script>
+</body>
+
+</html>
