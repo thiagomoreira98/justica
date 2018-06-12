@@ -3,7 +3,7 @@ var database = 'JUSTICA';
 
 var client = mysql.createConnection({
    user: 'root',
-   password: '',
+   password: '1234',
    host: 'localhost',
    port: 3306
 });

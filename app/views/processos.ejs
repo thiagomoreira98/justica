@@ -46,26 +46,26 @@
             <thead>
                 <tr>
                     <th>Codigo</th>
-                    <th>Nome</th>
-                    <th>Apelido</th>
-                    <th>Sexo</th>
-                    <th>Faculdade</th>
-                    <th>Data Formatura</th>
+                    <th>Nome Advogado</th>
+                    <th>Nome Reu</th>
+                    <th>Descricao</th>
+                    <th>Vara Tribunal</th>
+                    <th>Data Processo</th>
                     <th></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <% for (adv of advogados){%>
+                <% for (pro of processos){%>
                     <tr>
-                        <td><%= adv.adv_codigo%> </td>
-                        <td><%= adv.adv_nome%> </td>
-                        <td><%= adv.adv_apelido%> </td>
-                        <td><%= adv.adv_sexo%> </td>
-                        <td><%= adv.adv_faculdade%> </td>
-                        <td><%= adv.adv_dtformatura%> </td>
-                        <td><a class="btn btn-warning" href=<%="/advogado/" + adv.adv_codigo%>>Alterar</a> </td>
-                        <td><a class="btn btn-danger" href=<%="/advogado/excluir/" + adv.adv_codigo%>>Deletar</a> </td>
+                        <td><%= pro.pro_codigo%> </td>
+                        <td><%= pro.adv_nome%> </td>
+                        <td><%= pro.pro_nomereu%> </td>
+                        <td><%= pro.pro_descricao%> </td>
+                        <td><%= pro.pro_varatribunal%> </td>
+                        <td><%= pro.pro_dataprocesso%> </td>
+                        <td><a class="btn btn-warning" href=<%="/processo/" + pro.pro_codigo%>>Alterar</a> </td>
+                        <td><a class="btn btn-danger" href=<%="/processo/excluir/" + pro.pro_codigo%>>Deletar</a> </td>
                     </tr>
                 <%}%>
             </tbody>

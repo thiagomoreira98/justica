@@ -1,7 +1,11 @@
-var controller = require('../controllers/advogadoController');
+module.exports = (app) => {
 
-app.get('/advogados', controller.buscarAdvogados);
-app.get('/advogado/:codigo', controller.buscarAdvogadoPorCodigo);
-app.post('/advogado', controller.cadastrarAdvogado);
-app.put('/advogado/:codigo', controller.alterarAdvogado);
-app.delete('/advogado/:codigo', controller.deletarAdvogado);
+    var controller = require('../controllers/advogadoController');
+
+    app.get('/advogados', controller.buscarAdvogados);
+    app.get('/novoAdvogado', controller.novoAdvogado);
+    app.post('/advogado/novo', controller.cadastrarAdvogado);
+    app.get('/advogado/:codigo', controller.buscarAdvogadoPorCodigo);
+    app.post('/advogado/alterar/:codigo', controller.alterarAdvogado);
+    app.get('/advogado/excluir/:codigo', controller.deletarAdvogado);
+}

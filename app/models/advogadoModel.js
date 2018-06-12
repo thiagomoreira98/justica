@@ -1,9 +1,9 @@
-var client = require('../config/dbConnection');
-var tabela = 'advogados';
+var client = require('../../config/dbConnection');
+var tabela = 'ADVOGADO';
 
 module.exports = {
     buscarAdvogados,
-    buscarAdvogadoPorId,
+    buscarAdvogadoPorCodigo,
     cadastrarAdvogado,
     alterarAdvogado,
     deletarAdvogado
@@ -13,26 +13,17 @@ function buscarAdvogados(callback) {
     client.query(`SELECT * FROM ${tabela}`, callback);
 }
 
-function buscarAdvogadoPorId(id, callback) {
+function buscarAdvogadoPorCodigo(id, callback) {
     client.query(`SELECT * FROM ${tabela} WHERE adv_codigo = ${id}`, callback);
 }
 
-function cadastrarAdvogado(adv, callback) {
-    var msql = `INSERT INTO ${tabela}() 
-        VALUES(${adv.nome}, ${adv.apelido}, ${adv.sexo}, ${adv.faculdade}, ${adv.dtformatura})`;
-
-    client.query(msql, callback);
+function cadastrarAdvogado(advogado, callback) {
+    var msql = `INSERT INTO ${tabela} SET ? `;
+    client.query(msql, advogado, callback);
 }
 
-function alterarAdvogado(id, adv, callback) {
-    var msql = `UPDATE ${tabela} SET 
-                    adv_nome = ${adv.nome}, 
-                    adv_apelido = ${adv.apelido},
-                    adv_sexo = ${adv.sexo},
-                    adv_faculdade = ${adv.faculdade},
-                    adv_dtFormatura = ${adv.dtFormatura},
-                WHERE adv_codigo = ${id}`;
-                
+function alterarAdvogado(id, advogado, callback) {
+    var msql = `UPDATE ${tabela} SET adv_nome = '${advogado.adv_nome}', adv_apelido = '${advogado.adv_apelido}', adv_sexo = '${advogado.adv_sexo}', adv_faculdade = '${advogado.adv_faculdade}', adv_dtFormatura = '${advogado.adv_dtFormatura || '2018-12-10'}' WHERE adv_codigo = ${id}`;
     client.query(msql, callback);
 }
 

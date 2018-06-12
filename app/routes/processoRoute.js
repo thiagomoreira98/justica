@@ -1,7 +1,11 @@
-var controller = require('../controllers/processoController');
+module.exports = (app) => {
 
-app.get('/processo', controller.buscarProcessos);
-app.get('/processo/:codigo', controller.buscarProcessoPorCodigo);
-app.post('/processo', controller.cadastrarProcesso);
-app.put('/processo/:codigo', controller.alterarProcesso);
-app.delete('/processo/:codigo', controller.deletarProcesso);
+    var controller = require('../controllers/processoController');
+
+    app.get('/processos', controller.buscarProcessos);
+    app.get('/novoProcesso', controller.novoProcesso);
+    app.post('/processo/novo', controller.cadastrarProcesso);
+    app.get('/processo/:codigo', controller.buscarProcessoPorCodigo);
+    app.post('/processo/alterar/:codigo', controller.alterarProcesso);
+    app.get('/processo/excluir/:codigo', controller.deletarProcesso);
+}

@@ -2,34 +2,39 @@ var model = require('../models/advogadoModel.js');
 
 module.exports = {
     buscarAdvogados,
-    buscarAdvogadoPorId,
+    buscarAdvogadoPorCodigo,
+    novoAdvogado,
     cadastrarAdvogado,
     alterarAdvogado,
     deletarAdvogado
 }
 
 function buscarAdvogados(req, res) {
-    model.buscarAdvogados( (err, data) => {
+    model.buscarAdvogados((err, data) => {
         if (err)
-            throw err;
+            return res.json(err);
 
         res.render('../app/views/advogados.ejs', { advogados: data });
     });
 }
 
-function buscarAdvogadoPorId(req, res) {
-    model.buscarAdvogadoPorId(req.params.codigo, (err, data) => {
+function buscarAdvogadoPorCodigo(req, res) {
+    model.buscarAdvogadoPorCodigo(req.params.codigo, (err, data) => {
         if (err)
-            throw err;
+            return res.json(err);
 
-        res.render('../views/advogado.ejs', { advogado: data, title: data.adv_nome });
+        res.render('../app/views/alteraAdvogado.ejs', { advogado: data[0] });
     });
 }
 
+function novoAdvogado(req, res) {
+    res.render('../app/views/novoAdvogado.ejs');
+}
+
 function cadastrarAdvogado(req, res) {
-    model.cadastrarAdvogado(dados, (err, data) => {
+    model.cadastrarAdvogado(req.body, (err, data) => {
         if (err)
-            throw err;
+            return res.json(err);
 
         res.redirect('/advogados');
     });
@@ -38,7 +43,7 @@ function cadastrarAdvogado(req, res) {
 function alterarAdvogado(req, res) {
     model.alterarAdvogado(req.params.codigo, req.body, (err, data) => {
         if (err)
-            throw err;
+            return res.json(err);
 
         res.redirect('/advogados');
     });
@@ -47,8 +52,8 @@ function alterarAdvogado(req, res) {
 function deletarAdvogado(req, res) {
     model.deletarAdvogado(req.params.codigo, (err, data) => {
         if (err)
-            throw err;
+            return res.json(err);
 
-        res.end();
+        res.redirect('/advogados');
     });
 }
